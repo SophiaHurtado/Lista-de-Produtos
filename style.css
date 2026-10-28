@@ -1,0 +1,9 @@
+main {
+    display: flex;
+    gap: 20px;
+}
+
+.lista-produtos,
+.painel-detalhes {
+    flex: 1;
+}
