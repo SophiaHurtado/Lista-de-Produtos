@@ -14,8 +14,27 @@ async function carregarProdutos() {
     
     osprodutos.forEach(function(produto) {
         const item = document.createElement("li");
-        item.textContent = produto.title;
+        
+        const imagem = document.createElement("img");
+        imagem.src = produto.image;
+        imagem.alt = produto.title;
+
+        const titulo = document.createElement("p");
+        titulo.textContent = produto.title;
+
+        const preco = document.createElement("p");
+        preco.textContent = "R$" + produto.price.toFixed(2);
+
+        const botao = document.createElement("button");
+        botao.textContent = "Ver Detalhes";
+
+        item.appendChild(imagem);
+        item.appendChild(titulo);
+        item.appendChild(preco);
+        item.appendChild(botao);
+
         listaProdutos.appendChild(item);
+
     })
 }
 
