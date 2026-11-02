@@ -3,7 +3,25 @@ main {
     gap: 20px;
 }
 
+body {
+    /* ordem de preferencia, ele vai tentar as fontes que estiverem disponíveis*/
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background-color: #F8FAFC;
+    /*define a cor do texto (cinza escuro)*/
+    color: #1E293B;
+}
+
 .lista-produtos,
 .painel-detalhes {
+    /*flex divide duas colunas com mesmo espaço*/
     flex: 1;
+    /*background aqui é só nos cartões que foram separados, para se destacarem*/
+    background-color: #FFFFFF;
+    /*borda dos "cartões", que vai especificar a sua largura, estilo e cor*/
+    border: 1px solid #E2E8F0;
+    /*arredondar as bordas desses cartões (radius vem de raio da circunferencia, por isso a referencia "radius"*/
+    border-radius: 8px;
+    /*cria um espaço dentro do cartão entre a borda e o conteúdo*/
+    padding: 16px;
 }
+

@@ -32,7 +32,7 @@ async function carregarProdutos() {
         const preco = document.createElement("p");
         // como R$ não é pre definido no codigo, precisamos colocá-lo como texto para ser contatenado com outra informação
         //toFixed(2) = forçamentos as casas decimais do valor ser 2
-        preco.textContent = "R$" + produto.price.toFixed(2);
+        preco.textContent = "U$ " + produto.price.toFixed(2);
 
         const botao = document.createElement("button");
         botao.textContent = "Ver Detalhes";
@@ -80,10 +80,10 @@ function mostrarDetalhes(produto) {
         titulo.textContent = produto.title;
 
         const preco = document.createElement("p");
-        preco.textContent = "R$" + produto.price.toFixed(2);
+        preco.textContent = "U$ " + produto.price.toFixed(2);
 
         const categoria = document.createElement("p");
-        categoria.textContent = "Categoria" + produto.category;
+        categoria.textContent = "Categoria: " + produto.category;
 
         const descricao = document.createElement("p");
         descricao.textContent = "Descrição: " + produto.description;
