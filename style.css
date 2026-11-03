@@ -66,3 +66,21 @@ body {
     /*espessura da letra: negrito*/
     font-weight: bold;
 }
+
+/*seleciona todas as tags de botão*/
+button {
+    background-color: #2563EB;
+    /*texto branco para contraste*/
+    color: #FFFFFF;
+    /*remove as bordas cinzas do botao*/
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    /*troca o ponteiro do mouse para a mãozinha ao passar por cima*/
+    cursor: pointer;
+}
+
+/*hover significa para fazer tal coisa enquanto o mouse estiver em cima*/
+button:hover {
+    background-color: #1D4ED8;
+}
