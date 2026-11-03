@@ -25,3 +25,44 @@ body {
     padding: 16px;
 }
 
+/*pega as duas listas <ul> pelo id do HTML*/
+#produtos,
+#detalhes {
+    /*remove as bolinhas que são criadas com a lista <ul>*/
+    list-style: none;
+    /*remove o espaço interno do cartão*/
+    padding: 0%;
+    /*remove o espaço externo do cartão (afasta ou aproxima os elementos proximos)*/
+    margin: 0%;
+}
+
+/*especifica que cada item dentro de produtos deve ter margem arredondada, espaço interno e externo do cartão*/
+#produtos li{
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 12px;
+    /*cria espaço de um item e o proximo, separando os cartões*/
+    margin-bottom: 12px;
+}
+
+#produtos img {
+    /*define a largura*/
+    width: 60px;
+    /*define a altura*/
+    height: 60px;
+    /*redimensiona a imagem com a proporção original pra caber nas dimensões especificadas acima*/
+    object-fit: contain;
+}
+
+#detalhes img {
+    /*"max" impõe limites de crescimento do elemento para se adequar em celulares e computadores*/
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+}
+
+.preco {
+    color:#16A34A;
+    /*espessura da letra: negrito*/
+    font-weight: bold;
+}

@@ -1,27 +1,29 @@
 //criar uma variavel listaProdutos;
-//chamar o id do HTML "produtos", que é onde está a lista da API
 const listaProdutos =  document.getElementById("produtos");
+//chamar o id do HTML "produtos", que é onde está a lista da API
 console.log(listaProdutos);
 
 const listaDetalhes = document.getElementById("detalhes");
 
-//fetch para fazer requisições à API
 //aync quando vamos esperar uma informação dentro de uma função
-//"resposta" uma variavel criada que armazena o resultado da função quando chamamos a lista da API com o fetch
-// "osprodutos" uma variavel criada que armazena o resultado quando convertemos o resultado da lista da API em arquivo JSON (próprio para leitura no JS)
-//console.log é usado para conferir o andamento do codigo e se está funcionando conforme o esperado
 async function carregarProdutos() {
+    //fetch para fazer requisições à API
+    //"resposta" uma variavel criada que armazena o resultado da função quando chamamos a lista da API com o fetch
     const resposta = await fetch("https://fakestoreapi.com/products?limit=8");
+    //"osprodutos" uma variavel criada que armazena o resultado quando convertemos o resultado da lista da API em arquivo JSON (próprio para leitura no JS)
     const osprodutos = await resposta.json();
     
+    //"osprodutos" é uma constante que representa uma lista (array)
     osprodutos.forEach(function(produto) {
         const item = document.createElement("li");
         
         //createElement = tag na memória
         const imagem = document.createElement("img");
-        //src = define o endereço da imagem e o valor vai no campo "image"
+        //src = define o endereço da imagem 
+        //o valor vai no campo "image"
         imagem.src = produto.image;
         //alt = define um texto caso a imagem falhar
+        //ou seja, vai aparecer o título do produto mesmo
         imagem.alt = produto.title;
 
         const titulo = document.createElement("p");
@@ -33,6 +35,10 @@ async function carregarProdutos() {
         // como R$ não é pre definido no codigo, precisamos colocá-lo como texto para ser contatenado com outra informação
         //toFixed(2) = forçamentos as casas decimais do valor ser 2
         preco.textContent = "U$ " + produto.price.toFixed(2);
+        /*dá mais um nome ou etiqueta para a classe, para conseguir distinguir esse botton no CSS
+        por haver mais referencias de <p> no codigo*/
+        preco.classList.add("preco");
+
 
         const botao = document.createElement("button");
         botao.textContent = "Ver Detalhes";
@@ -81,6 +87,8 @@ function mostrarDetalhes(produto) {
 
         const preco = document.createElement("p");
         preco.textContent = "U$ " + produto.price.toFixed(2);
+        /*diferenciar o preco dos <p> no CSS*/
+        preco.classList.add("preco");
 
         const categoria = document.createElement("p");
         categoria.textContent = "Categoria: " + produto.category;
