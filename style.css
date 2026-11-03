@@ -1,3 +1,4 @@
+/*faz os <section> ficarem lado a lado em linha*/
 main {
     display: flex;
     gap: 20px;
@@ -43,6 +44,14 @@ body {
     padding: 12px;
     /*cria espaço de um item e o proximo, separando os cartões*/
     margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+#produtos h3 {
+    font-size: 16px;
+    margin: 0 0 4px 0;
 }
 
 #produtos img {
@@ -83,4 +92,13 @@ button {
 /*hover significa para fazer tal coisa enquanto o mouse estiver em cima*/
 button:hover {
     background-color: #1D4ED8;
+}
+
+/*media: aplicar as regras somente se a tela for de tal forma*/
+/*ou seja, se a tela for até 768px, caso ultrapasse o bloco é ignorado*/
+@media (max-width: 768px) {
+    main {
+        /*empilha os itens verticalmente*/
+        flex-direction: column;
+    }
 }

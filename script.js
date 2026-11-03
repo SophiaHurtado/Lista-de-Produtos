@@ -50,11 +50,13 @@ async function carregarProdutos() {
         });
 
 
-        //aqui atualizamos a lista com todas as informações adicionais que colocamos acima
+        const info = document.createElement("div");
+        info.appendChild(titulo);
+        info.appendChild(preco);
+        info.appendChild(botao);
+
         item.appendChild(imagem);
-        item.appendChild(titulo);
-        item.appendChild(preco);
-        item.appendChild(botao);
+        item.appendChild(info);
 
         listaProdutos.appendChild(item);
 
