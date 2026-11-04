@@ -46,18 +46,19 @@ async function carregarProdutos() {
         por haver mais referencias de <p> no codigo*/
         preco.classList.add("preco");
 
-
+        //botao "Ver Detalhes"
         const botao = document.createElement("button");
         botao.textContent = "Ver Detalhes";
 
         //addEventListener é usado para instruir o que fazer de acordo com uma ação
         botao.addEventListener("click", function() {
-            //quando clicado no botão, chama a função de carregar detalhes (no console ainda)
+            //quando clicado no botão, chama a função de carregar detalhes
             carregarDetalhes(produto.id);
         });
 
-
+        //cria uma tag div(caixinha)
         const info = document.createElement("div");
+        //as três linhas abaixo colocam titulo, preço e botão na mesma caixinha 
         info.appendChild(titulo);
         info.appendChild(preco);
         info.appendChild(botao);
@@ -75,12 +76,30 @@ async function carregarDetalhes(id) {
     //escreve o texto no painel da direita, antes do fetch(requisição) começar
     listaDetalhes.innerHTML = "Carregando...";
 
-    //resposta: guarda a resposta bruta e await espera a API retornar
-    const resposta = await fetch("https://fakestoreapi.com/products/" + id);
-    //.json() converte para que o JS possa ler
-    const produto = await resposta.json();
+    //vai tentar o código que pode dar erro, depende da internet e da API
+    try{
+        //resposta: guarda a resposta bruta e await espera a API retornar
+        //fetch faz a requisição ao endpoint de detahes
+        const resposta = await fetch("https://fakestoreapi.com/products/" + id);
 
-    mostrarDetalhes(produto);
+        //como o try/catch não considera o erro 404 (servidor nao encontrado) ou 500(problema interno no servidor) como erro, fazemos manualmente
+        //esse !resposta.ok inverte o resultado que chegar do fetch
+        //caso seja o erro 404, ele é falso, mas com o !resposta.ok vira verdadeiro e entra nesse if
+        //o thwow new Error joga automaticamente esse erro para o catch e nem chega a rodar o await abaixo
+        if (!resposta.ok) {
+            throw new Error("Erro ao buscar o produto");
+        }
+
+        //.json() converte para que o JS possa ler
+        const produto = await resposta.json();
+
+        mostrarDetalhes(produto);
+    //agora qualquer 404, 500 ou queda de interner vai cair no bloco abaixo    
+    } catch (erro) {
+        listaDetalhes.innerHTML = "Não foi possível carregar os detalhes";
+        console.log(erro);
+    }
+
 
     //explicação detalhada do codigo acima:
     //por ser codigo cascata, vai aparecer de inicio o texto carregando por ser o primeiro comando,
