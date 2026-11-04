@@ -12,8 +12,8 @@ body {
     color: #1E293B;
 }
 
-.lista-produtos,
-.painel-detalhes {
+#lista-produtos,
+#painel-detalhes {
     /*flex divide duas colunas com mesmo espaço*/
     flex: 1;
     /*background aqui é só nos cartões que foram separados, para se destacarem*/
