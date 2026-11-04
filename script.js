@@ -7,13 +7,20 @@ const listaDetalhes = document.getElementById("detalhes");
 
 //aync quando vamos esperar uma informação dentro de uma função
 async function carregarProdutos() {
+    //escreve o texto no painel da direita, antes da requisição começar
+    listaProdutos.innerHTML = "Carregando...";
+
     //fetch para fazer requisições à API
     //"resposta" uma variavel criada que armazena o resultado da função quando chamamos a lista da API com o fetch
     const resposta = await fetch("https://fakestoreapi.com/products?limit=8");
     //"osprodutos" uma variavel criada que armazena o resultado quando convertemos o resultado da lista da API em arquivo JSON (próprio para leitura no JS)
     const osprodutos = await resposta.json();
+
+    //esse InnerHTML aqui apaga o texto "Carregando..." para os cartões entrarem no lugar
+    listaProdutos.innerHTML ="";
     
     //"osprodutos" é uma constante que representa uma lista (array)
+    //forEach itera cada item da lista, usando a mesma propriedade para todos
     osprodutos.forEach(function(produto) {
         const item = document.createElement("li");
         
@@ -44,7 +51,7 @@ async function carregarProdutos() {
         botao.textContent = "Ver Detalhes";
 
         //addEventListener é usado para instruir o que fazer de acordo com uma ação
-        botao.addEventListener("click", function(){
+        botao.addEventListener("click", function() {
             //quando clicado no botão, chama a função de carregar detalhes (no console ainda)
             carregarDetalhes(produto.id);
         });
@@ -65,12 +72,19 @@ async function carregarProdutos() {
 
 //utilizando id como parametro podemos usá-la para qualquer produto
 async function carregarDetalhes(id) {
-    //resposta guarda a resposta bruta
+    //escreve o texto no painel da direita, antes do fetch(requisição) começar
+    listaDetalhes.innerHTML = "Carregando...";
+
+    //resposta: guarda a resposta bruta e await espera a API retornar
     const resposta = await fetch("https://fakestoreapi.com/products/" + id);
     //.json() converte para que o JS possa ler
     const produto = await resposta.json();
 
     mostrarDetalhes(produto);
+
+    //explicação detalhada do codigo acima:
+    //por ser codigo cascata, vai aparecer de inicio o texto carregando por ser o primeiro comando,
+    //logo depois vem a requisição e o conteúdo encontrado é substituto do texto inicial "carregando"
 }
 
 function mostrarDetalhes(produto) {
